@@ -4,6 +4,14 @@
 ## Descripción
 Se realiza la gestión de la aldea Konoha para que puedan mejorar la eficiencia de sus equipos y de su personal como tal los ninjas.
 
+## Tecnologias Utilizadas
+
+* Draw.sql
+* StarUML
+* GitHub
+* VisualStudio
+* Notion
+
 ## Patrones de diseño a trabajar:
 
 * Builder (Para mejorar los atributos y métodos en un futuro que se requieran más datos)
