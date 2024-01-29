@@ -1,0 +1,38 @@
+
+package com.aldea.ninja;
+
+public class Habilidad {
+
+    private String nombre;
+    private String descripcion;
+    private long idNinja;
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public long getIdNinja() {
+        return idNinja;
+    }
+    public void setIdNinja(long idNinja) {
+        this.idNinja = idNinja;
+    }
+
+    @Override
+    public String toString() {
+        return "La habilidad " + 
+                "\n Es: " + nombre + 
+                "\n Con descripcion: " + descripcion + 
+                "\n E ninja asignado: " + idNinja;
+    }
+
+    
+}
