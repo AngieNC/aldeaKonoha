@@ -15,6 +15,11 @@ Se realiza la gestión de la aldea Konoha para que puedan mejorar la eficiencia 
 * Responsabilidad Unica
 * Open/closed
 
+## Relaciones:
+
+* **Composicion** (Pues si Ninja desaparece la lógica también, sin ello no se puede ejecutar la lógica)
+* **Agregación** (En mayor parte si las habilidades, misiones o aldeas desaparecen, el ninja sigue existiendo)
+
 ## Diagrama UML
 ![](/src/main/java/com/aldea/com/aldea/img/UML.jpg)
 
