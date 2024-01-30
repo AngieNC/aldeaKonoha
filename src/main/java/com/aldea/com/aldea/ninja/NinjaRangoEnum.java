@@ -1,5 +1,5 @@
 
-package com.aldea.ninja;
+package com.aldea.com.aldea.ninja;
 
 public enum NinjaRangoEnum {
         BAJO("bajo"),

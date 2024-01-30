@@ -1,5 +1,5 @@
 
-package com.aldea.ninja;
+package com.aldea.com.aldea.ninja;
 
 import java.sql.Date;
 

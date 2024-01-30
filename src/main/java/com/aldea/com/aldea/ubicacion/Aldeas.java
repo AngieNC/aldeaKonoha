@@ -1,5 +1,5 @@
 
-package com.aldea.ubicacion;
+package com.aldea.com.aldea.ubicacion;
 
 public class Aldeas {
     
