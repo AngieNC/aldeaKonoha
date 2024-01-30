@@ -1,6 +1,6 @@
-package com.aldea.builders;
+package com.aldea.com.aldea.builders;
 
-import com.aldea.ninja.Mision;
+import com.aldea.com.aldea.ninja.Mision;
 
 public class OficialMisiones implements CrearMisiones{
 

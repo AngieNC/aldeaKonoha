@@ -1,6 +1,6 @@
-package com.aldea.builders;
+package com.aldea.com.aldea.builders;
 
-import com.aldea.ninja.Habilidad;
+import com.aldea.com.aldea.ninja.Habilidad;
 
 public class OficialHabilidades implements CrearHabilidades{
 
@@ -19,8 +19,8 @@ public class OficialHabilidades implements CrearHabilidades{
     }
 
     @Override
-    public CrearHabilidades idNinja(long idNinja) {
-        habilidad.setIdNinja(idNinja);
+    public CrearHabilidades id_ninja(long id_ninja) {
+        habilidad.setIdNinja(id_ninja);
         return this;
     }
 
@@ -28,5 +28,11 @@ public class OficialHabilidades implements CrearHabilidades{
     public Habilidad build() {
         return habilidad;
     }
-    
+    /*
+    @Override
+    public CrearHabilidades habilidadId(long habilidadId) {
+        habilidad.setHabilidadId(habilidadId);
+        return this;
+    }
+    */   
 }

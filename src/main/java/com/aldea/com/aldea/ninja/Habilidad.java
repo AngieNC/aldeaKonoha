@@ -1,12 +1,14 @@
 
-package com.aldea.ninja;
+package com.aldea.com.aldea.ninja;
 
 public class Habilidad {
 
+    //private long habilidadId;
     private String nombre;
     private String descripcion;
-    private long idNinja;
+    private long id_ninja;
 
+    
     public String getNombre() {
         return nombre;
     }
@@ -20,10 +22,10 @@ public class Habilidad {
         this.descripcion = descripcion;
     }
     public long getIdNinja() {
-        return idNinja;
+        return id_ninja;
     }
-    public void setIdNinja(long idNinja) {
-        this.idNinja = idNinja;
+    public void setIdNinja(long id_ninja) {
+        this.id_ninja = id_ninja;
     }
 
     @Override
@@ -31,8 +33,6 @@ public class Habilidad {
         return "La habilidad " + 
                 "\n Es: " + nombre + 
                 "\n Con descripcion: " + descripcion + 
-                "\n E ninja asignado: " + idNinja;
+                "\n E ninja asignado: " + id_ninja;
     }
-
-    
 }

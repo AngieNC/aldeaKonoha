@@ -1,16 +1,19 @@
-package com.aldea.DAO;
+package com.aldea.com.aldea.DAO;
 
-import java.util.stream.Stream;
+import java.util.List;
 
-public interface IDao<T, W, H> {
+import com.aldea.com.aldea.ninja.Habilidad;
+import com.aldea.com.aldea.ninja.HabilidadNinja;
+
+public interface IDao<T, W, H, O> {
 
     W misionDisponiblePorId(long id);
 
     W misionCompletadasPorId(long id);
 
-    Stream<H> misionesCompletadas();
+    List<Habilidad> misionesCompletadas();
 
-    Stream<H> todosNinjasHabilidades();
+    List<HabilidadNinja> todosNinjasHabilidades();
 
     void agregarNinja(T t);
 

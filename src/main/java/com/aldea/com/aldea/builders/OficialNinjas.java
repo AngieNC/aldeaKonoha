@@ -1,7 +1,7 @@
-package com.aldea.builders;
+package com.aldea.com.aldea.builders;
 
-import com.aldea.ninja.Ninja;
-import com.aldea.ninja.NinjaRangoEnum;
+import com.aldea.com.aldea.ninja.Ninja;
+import com.aldea.com.aldea.ninja.NinjaRangoEnum;
 
 public class OficialNinjas implements CrearNinjas{
 

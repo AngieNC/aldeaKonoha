@@ -1,5 +1,5 @@
 
-package com.aldea.conexion;
+package com.aldea.com.aldea.conexion;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

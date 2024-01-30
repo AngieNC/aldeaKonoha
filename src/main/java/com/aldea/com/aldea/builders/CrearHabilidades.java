@@ -1,12 +1,12 @@
-package com.aldea.builders;
+package com.aldea.com.aldea.builders;
 
-import com.aldea.ninja.Habilidad;
+import com.aldea.com.aldea.ninja.Habilidad;
 
 public interface CrearHabilidades {
-
+    //CrearHabilidades habilidadId(long habilidadId);
     CrearHabilidades nombre(String nombre);
     CrearHabilidades descripcion(String descripcion);
-    CrearHabilidades idNinja(long idNinja);
+    CrearHabilidades id_ninja(long id_ninja);
     Habilidad build();
     
 }

@@ -1,4 +1,4 @@
-package com.aldea.conexion;
+package com.aldea.com.aldea.conexion;
 
 import java.beans.Statement;
 import java.sql.Connection;
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ConexionTodo {
+public abstract class ConexionTodo {
 
     public static Connection conex;
     public static Statement st = null;
@@ -35,18 +35,19 @@ public class ConexionTodo {
         try {
             rs = info.executeQuery();
         } catch (SQLException | RuntimeException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("ERROR: " + e);
+            return null;
         }
-        return null;
+        return rs;
     }
 
-    public static int anadirNinja(PreparedStatement info){
+    public static int anadirActualizarEliminarNinja(PreparedStatement info){
         int comprobar;
 
         try {
             comprobar = info.executeUpdate();
         } catch (SQLException | RuntimeException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("ERROR: " + e);
             return 0;
         }
         return comprobar;

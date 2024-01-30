@@ -1,6 +1,6 @@
-package com.aldea.builders;
+package com.aldea.com.aldea.builders;
 
-import com.aldea.ninja.Ninja;
+import com.aldea.com.aldea.ninja.Ninja;
 
 public interface CrearNinjas {
 

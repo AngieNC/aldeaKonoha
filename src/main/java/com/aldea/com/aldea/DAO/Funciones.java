@@ -1,10 +1,11 @@
-package com.aldea.DAO;
+package com.aldea.com.aldea.DAO;
 
-import java.util.stream.Stream;
+import java.util.List;
 
-import com.aldea.Funcionalidades;
-import com.aldea.ninja.Habilidad;
-import com.aldea.ninja.Mision;
+import com.aldea.com.aldea.Funcionalidades;
+import com.aldea.com.aldea.ninja.Habilidad;
+import com.aldea.com.aldea.ninja.HabilidadNinja;
+import com.aldea.com.aldea.ninja.Mision;
 
 public class Funciones {
     
@@ -18,11 +19,11 @@ public class Funciones {
         return funciones.misionCompletadasPorId(id);
     }
 
-    public static Stream<Habilidad> todosNinjasHabilidades(){
+    public static List<HabilidadNinja> todosNinjasHabilidades(){
         return funciones.todosNinjasHabilidades();
     }
 
-    public static Stream<Habilidad> misionesCompletadas(){
+    public static List<Habilidad> misionesCompletadas(){
         return funciones.misionesCompletadas();
     }
 
