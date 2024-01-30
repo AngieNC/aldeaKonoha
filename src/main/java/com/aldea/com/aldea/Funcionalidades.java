@@ -1,4 +1,4 @@
-package com.aldea;
+package com.aldea.com.aldea;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.aldea.DAO.IDao;
-import com.aldea.builders.CrearHabilidades;
-import com.aldea.builders.CrearMisiones;
-import com.aldea.builders.OficialHabilidades;
-import com.aldea.builders.OficialMisiones;
-import com.aldea.conexion.Conexion;
-import com.aldea.conexion.ConexionTodo;
-import com.aldea.ninja.Habilidad;
-import com.aldea.ninja.Mision;
-import com.aldea.ninja.Ninja;
+import com.aldea.com.aldea.DAO.IDao;
+import com.aldea.com.aldea.builders.CrearHabilidades;
+import com.aldea.com.aldea.builders.CrearMisiones;
+import com.aldea.com.aldea.builders.OficialHabilidades;
+import com.aldea.com.aldea.builders.OficialMisiones;
+import com.aldea.com.aldea.conexion.Conexion;
+import com.aldea.com.aldea.conexion.ConexionTodo;
+import com.aldea.com.aldea.ninja.Habilidad;
+import com.aldea.com.aldea.ninja.HabilidadNinja;
+import com.aldea.com.aldea.ninja.Mision;
+import com.aldea.com.aldea.ninja.Ninja;
 
-public class Funcionalidades implements IDao<Ninja, Mision, Habilidad>{
+public class Funcionalidades implements IDao<Ninja, Mision, Habilidad, HabilidadNinja> {
 
     @Override
     public Mision misionDisponiblePorId(long id) {
@@ -26,21 +27,20 @@ public class Funcionalidades implements IDao<Ninja, Mision, Habilidad>{
         ConexionTodo.setConnection(Conexion.MYSQLConnection());
         String stm = "SELECT * FROM Mision m JOIN MisionNinja mn ON m.id = mn.id_mision WHERE mn.id_ninja = ? AND mn.estado = 'disponible';";
 
-        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)){
+        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)) {
             ps.setLong(1, id);
             ResultSet rs = ConexionTodo.query_db(ps);
-            if(rs.next()){
+            if (rs.next()) {
                 CrearMisiones misiones = new OficialMisiones();
                 Mision misionesVer = misiones
 
-                    .misionId(rs.getLong("misionId"))
-                    .descripcion(rs.getString("descripcion"))
-                    .rango(rs.getInt("rango"))
-                    .recompensa(rs.getDouble("recompensa"))
-                    .build();
+                        .descripcion(rs.getString("descripcion"))
+                        .rango(rs.getInt("rango"))
+                        .recompensa(rs.getDouble("recompensa"))
+                        .build();
                 return misionesVer;
             } else {
-                System.out.println("Error, this id wasn't founded");
+                System.out.println("Error, el id no fue encontrado");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -53,18 +53,18 @@ public class Funcionalidades implements IDao<Ninja, Mision, Habilidad>{
         ConexionTodo.setConnection(Conexion.MYSQLConnection());
         String stm = "SELECT * FROM Mision m JOIN MisionNinja mn ON m.id = mn.id_mision WHERE mn.id_ninja = ? AND mn.estado = 'completada';";
 
-        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)){
+        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)) {
             ps.setLong(1, id);
             ResultSet rs = ConexionTodo.query_db(ps);
-            if(rs.next()){
+            if (rs.next()) {
                 CrearMisiones misiones = new OficialMisiones();
                 Mision misionesVer = misiones
 
-                    .misionId(rs.getLong("misionId"))
-                    .descripcion(rs.getString("descripcion"))
-                    .rango(rs.getInt("rango"))
-                    .recompensa(rs.getDouble("recompensa"))
-                    .build();
+                        .misionId(rs.getLong("misionId"))
+                        .descripcion(rs.getString("descripcion"))
+                        .rango(rs.getInt("rango"))
+                        .recompensa(rs.getDouble("recompensa"))
+                        .build();
                 return misionesVer;
             } else {
                 System.out.println("Error, this id wasn't founded");
@@ -76,35 +76,31 @@ public class Funcionalidades implements IDao<Ninja, Mision, Habilidad>{
     }
 
     @Override
-    public Stream<Habilidad> todosNinjasHabilidades() {
-        List<Habilidad> todo = new ArrayList<>();
-        Stream<Habilidad> todo2 = todo.stream();
+    public List<HabilidadNinja> todosNinjasHabilidades() {
+        List<HabilidadNinja> todo = new ArrayList<>();
 
         ConexionTodo.setConnection(Conexion.MYSQLConnection());
         String stm = "SELECT n.nombre AS Nombre_ninja, h.nombre AS Nombre_habilidad FROM Habilidad h JOIN Ninja n ON n.id = h.id_ninja;";
 
-        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)){
+        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)) {
             ResultSet rs = ConexionTodo.query_db(ps);
             while (rs.next()) {
-                CrearHabilidades habilidades = new OficialHabilidades();
-                Habilidad habilidad = habilidades
-                    .nombre(rs.getString("nombre"))
-                    .descripcion(rs.getString("descripcion"))
-                    .idNinja(rs.getLong("idNinja"))
-                    .build();
+                HabilidadNinja habilidad = new HabilidadNinja(
+                        rs.getString("Nombre_ninja"),
+                        rs.getString("Nombre_habilidad"));
+
                 todo.add(habilidad);
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
-        return todo2;
+        return todo;
     }
 
     @Override
     public void agregarNinja(Ninja t) {
 
-        
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarNinja'");
     }
@@ -122,32 +118,29 @@ public class Funcionalidades implements IDao<Ninja, Mision, Habilidad>{
     }
 
     @Override
-    public Stream<Habilidad> misionesCompletadas() {
+    public List<Habilidad> misionesCompletadas() {
 
         List<Habilidad> misiones = new ArrayList<>();
-        Stream<Habilidad> misiones2 = misiones.stream();
 
         ConexionTodo.setConnection(Conexion.MYSQLConnection());
         String stm = "SELECT * FROM Mision m JOIN MisionNinja mn ON m.id = mn.id_mision WHERE mn.estado = 'completada';";
 
-        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)){
+        try (PreparedStatement ps = ConexionTodo.getConnection().prepareStatement(stm)) {
             ResultSet rs = ConexionTodo.query_db(ps);
             while (rs.next()) {
                 CrearHabilidades habilidades = new OficialHabilidades();
                 Habilidad habilidad = habilidades
-                    .nombre(rs.getString("nombre"))
-                    .descripcion(rs.getString("descripcion"))
-                    .idNinja(rs.getLong("idNinja"))
-                    .build();
+                        .id_ninja(rs.getLong("id_ninja"))
+                        .nombre(rs.getString("nombre"))
+                        .descripcion(rs.getString("descripcion"))
+                        .build();
                 misiones.add(habilidad);
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return misiones2;
+        return misiones;
     }
 
-    
-    
 }
